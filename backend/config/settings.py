@@ -64,8 +64,12 @@ if DATABASE_URL:
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
-    if DATABASES['default'].get('HOST', '').endswith('supabase.com'):
-        DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
+    db = DATABASES['default']
+    if db.get('HOST', '').endswith('supabase.com'):
+        db['OPTIONS'] = {'sslmode': 'require'}
+    # PostgreSQL identifier limit 63 chars; fix misparsed NAME from malformed DATABASE_URL
+    if len(db.get('NAME', '')) > 63:
+        db['NAME'] = 'postgres'
 else:
     DATABASES = {
         'default': {
