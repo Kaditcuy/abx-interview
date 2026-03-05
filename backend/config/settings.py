@@ -55,8 +55,7 @@ TEMPLATES = [
     },
 ]
 
-# Database: Supabase PostgreSQL (or SQLite when DATABASE_URL not set)
-# Supabase: Project Settings → Database → Connection string (URI). Use pooler port 6543.
+# Database: Supabase PostgreSQL or default  SQLite when DATABASE_URL not set
 DATABASE_URL = os.environ.get('DATABASE_URL')
 if DATABASE_URL:
     if DATABASE_URL.startswith('postgres://'):
@@ -75,10 +74,6 @@ else:
         }
     }
 
-# For Supabase we need dj-database-url for parsing DATABASE_URL
-# Add it to requirements and use it only when DATABASE_URL is set
-# Actually let me add dj-database-url to requirements and use it unconditionally for clarity
-# I'll add dj-database_url to requirements and keep this logic
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -102,7 +97,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
 }
 
-# CORS: allow frontend (Netlify + local Vite)
+# CORS: allow frontend (Netlify + local Vite) connect it here so django can view it
 CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173,https://abx-interview.netlify.app').split(',')
 if os.environ.get('CORS_EXTRA_ORIGINS'):
     CORS_ALLOWED_ORIGINS.extend(os.environ.get('CORS_EXTRA_ORIGINS', '').split(','))
