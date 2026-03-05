@@ -1,0 +1,10 @@
+# Netlify build and deploy for Hospital System frontend
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA: all routes serve index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
