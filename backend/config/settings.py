@@ -103,6 +103,6 @@ REST_FRAMEWORK = {
 }
 
 # CORS: allow frontend (Netlify + local Vite)
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173').split(',')
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://127.0.0.1:5173,https://abx-interview.netlify.app/').split(',')
 if os.environ.get('CORS_EXTRA_ORIGINS'):
     CORS_ALLOWED_ORIGINS.extend(os.environ.get('CORS_EXTRA_ORIGINS', '').split(','))
