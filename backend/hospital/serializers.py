@@ -14,7 +14,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 
 class DoctorSerializer(serializers.ModelSerializer):
-    department_name = serializers.CharField(source='department.name', read_only=True)
+    department_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Doctor
@@ -22,6 +22,9 @@ class DoctorSerializer(serializers.ModelSerializer):
             'id', 'first_name', 'last_name', 'specialty', 'department', 'department_name',
             'license_number', 'email', 'is_active', 'created_at'
         ]
+
+    def get_department_name(self, obj):
+        return obj.department.name if obj.department_id else None
 
 
 class PatientSerializer(serializers.ModelSerializer):
