@@ -4,8 +4,8 @@ Django + DRF backend, React (Vite) frontend, PostgreSQL on Supabase. Backend run
 
 ## Layout
 
-- `backend/` — Django app (config, hospital app with Department, Doctor, Patient, Appointment). Copy `.env.example` to `.env` and set `DATABASE_URL`, `DJANGO_SECRET_KEY`, `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`.
-- `frontend/` — React + Vite. Set `VITE_API_URL` to your backend URL when building for production.
+- `backend/` — Django app (config, hospital app with Department, Doctor, Patient, Appointment). 
+- `frontend/` — React + Vite. Set `VITE_API_URL` to  backend URL for production.
 
 ## Backend
 
@@ -29,7 +29,7 @@ npm install
 npm run build
 ```
 
-On Netlify: base directory `frontend`, build command `npm run build`, publish `dist`. Add env var `VITE_API_URL` = your backend URL (no trailing slash).
+On Netlify: base directory `frontend`, build command `npm run build`, publish `dist`. Add env var `VITE_API_URL` = backend URL (no trailing slash).
 
 ## Seed data (optional)
 
