@@ -10,7 +10,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'code', 'description', 'doctor_count', 'created_at']
 
     def get_doctor_count(self, obj):
-        return obj.doctors.filter(is_active=True).count()
+        return obj.doctors.count()
 
 
 class DoctorSerializer(serializers.ModelSerializer):
@@ -18,10 +18,7 @@ class DoctorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Doctor
-        fields = [
-            'id', 'first_name', 'last_name', 'specialty', 'department', 'department_name',
-            'license_number', 'email', 'is_active', 'created_at'
-        ]
+        fields = ['id', 'first_name', 'last_name', 'specialty', 'department', 'department_name', 'image']
 
     def get_department_name(self, obj):
         return obj.department.name if obj.department_id else None
@@ -30,10 +27,7 @@ class DoctorSerializer(serializers.ModelSerializer):
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = [
-            'id', 'first_name', 'last_name', 'date_of_birth', 'gender', 'phone', 'email',
-            'address', 'emergency_contact', 'created_at'
-        ]
+        fields = ['id', 'first_name', 'last_name', 'phone', 'email', 'image']
 
 
 class AppointmentSerializer(serializers.ModelSerializer):

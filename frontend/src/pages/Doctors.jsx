@@ -8,11 +8,11 @@ export default function Doctors() {
   const [error, setError] = useState(null)
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState({
-    first_name: '', last_name: '', specialty: '', department: '', license_number: '', email: '',
+    first_name: '', last_name: '', specialty: '', department: '', image: '',
   })
 
   const load = () => {
-    Promise.all([doctorsApi.list({ include_inactive: 1 }), departmentsApi.list()])
+    Promise.all([doctorsApi.list(), departmentsApi.list()])
       .then(([dr, dept]) => {
         setList(dr.data.results ?? dr.data)
         setDepartments(dept.data.results ?? dept.data)
@@ -32,7 +32,7 @@ export default function Doctors() {
     doctorsApi.create(payload)
       .then(() => {
         setShowForm(false)
-        setForm({ first_name: '', last_name: '', specialty: '', department: '', license_number: '', email: '' })
+        setForm({ first_name: '', last_name: '', specialty: '', department: '', image: '' })
         load()
       })
       .catch((err) => setError(err.response?.data ? JSON.stringify(err.response.data) : err.message))
@@ -74,15 +74,9 @@ export default function Doctors() {
                 {departments.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
               </select>
             </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>License number</label>
-                <input value={form.license_number} onChange={(e) => setForm({ ...form, license_number: e.target.value })} />
-              </div>
-              <div className="form-group">
-                <label>Email</label>
-                <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-              </div>
+            <div className="form-group">
+              <label>Image URL</label>
+              <input type="url" value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} placeholder="https://..." />
             </div>
             <button type="submit" className="btn btn-primary">Save</button>
           </form>
@@ -98,8 +92,7 @@ export default function Doctors() {
                 <th>Name</th>
                 <th>Specialty</th>
                 <th>Department</th>
-                <th>Email</th>
-                <th>Active</th>
+                <th>Image</th>
               </tr>
             </thead>
             <tbody>
@@ -108,8 +101,13 @@ export default function Doctors() {
                   <td>Dr. {d.last_name}, {d.first_name}</td>
                   <td>{d.specialty}</td>
                   <td>{d.department_name || '—'}</td>
-                  <td>{d.email || '—'}</td>
-                  <td>{d.is_active ? 'Yes' : 'No'}</td>
+                  <td>
+                    {d.image ? (
+                      <img src={d.image} alt="" style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 4 }} />
+                    ) : (
+                      '—'
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

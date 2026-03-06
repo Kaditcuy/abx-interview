@@ -14,14 +14,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
 
 
 class DoctorViewSet(viewsets.ModelViewSet):
-    queryset = Doctor.objects.select_related('department').filter(is_active=True)
+    queryset = Doctor.objects.select_related('department').all()
     serializer_class = DoctorSerializer
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        if self.action == 'list' and self.request.query_params.get('include_inactive') == '1':
-            qs = Doctor.objects.select_related('department').all()
-        return qs
 
 
 class PatientViewSet(viewsets.ModelViewSet):

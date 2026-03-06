@@ -22,11 +22,7 @@ class Doctor(models.Model):
     department = models.ForeignKey(
         Department, on_delete=models.SET_NULL, null=True, blank=True, related_name='doctors'
     )
-    license_number = models.CharField(max_length=60, unique=True, blank=True)
-    email = models.EmailField(blank=True)
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    image = models.URLField(blank=True)
 
     class Meta:
         ordering = ['last_name', 'first_name']
@@ -38,14 +34,9 @@ class Doctor(models.Model):
 class Patient(models.Model):
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
-    date_of_birth = models.DateField(null=True, blank=True)
-    gender = models.CharField(max_length=20, blank=True)
     phone = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
-    address = models.TextField(blank=True)
-    emergency_contact = models.CharField(max_length=200, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    image = models.URLField(blank=True)
 
     class Meta:
         ordering = ['last_name', 'first_name']

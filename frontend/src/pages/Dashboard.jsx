@@ -32,8 +32,8 @@ export default function Dashboard() {
     fetch()
   }, [])
 
-  if (loading) return <div className="app-page"><div className="loading">Loading…</div></div>
-  if (error) return <div className="app-page"><div className="error">{error}</div></div>
+  if (loading) return <div className="app-page dashboard-page"><div className="loading">Loading…</div></div>
+  if (error) return <div className="app-page dashboard-page"><div className="error">{error}</div></div>
 
   const cards = [
     { label: 'Departments', value: counts.departments, to: '/departments' },
@@ -43,7 +43,7 @@ export default function Dashboard() {
   ]
 
   return (
-    <div className="app-page">
+    <div className="app-page dashboard-page">
       <h1>Dashboard</h1>
       <div className="dashboard-grid">
         {cards.map(({ label, value, to }) => (

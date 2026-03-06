@@ -10,14 +10,14 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(Doctor)
 class DoctorAdmin(admin.ModelAdmin):
-    list_display = ['last_name', 'first_name', 'specialty', 'department', 'is_active']
-    list_filter = ['department', 'is_active']
-    search_fields = ['first_name', 'last_name', 'license_number']
+    list_display = ['last_name', 'first_name', 'specialty', 'department', 'image']
+    list_filter = ['department']
+    search_fields = ['first_name', 'last_name']
 
 
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
-    list_display = ['last_name', 'first_name', 'date_of_birth', 'phone']
+    list_display = ['last_name', 'first_name', 'phone', 'email', 'image']
     search_fields = ['first_name', 'last_name', 'email', 'phone']
 
 

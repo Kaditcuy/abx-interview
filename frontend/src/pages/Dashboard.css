@@ -1,3 +1,23 @@
+.dashboard-page {
+  background: #fff;
+  color: #1a1a1a;
+  min-height: calc(100vh - 56px);
+  margin: -1.5rem -2rem 0;
+  padding: 1.5rem 2rem 2rem;
+}
+
+.dashboard-page h1 {
+  color: #1a1a1a;
+}
+
+.dashboard-page .loading {
+  color: #64748b;
+}
+
+.dashboard-page .error {
+  color: var(--danger);
+}
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -5,8 +25,8 @@
 }
 
 .dashboard-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius);
   padding: 1.5rem;
   display: flex;
@@ -14,12 +34,12 @@
   gap: 0.25rem;
   transition: background 0.15s, border-color 0.15s;
   text-decoration: none;
-  color: inherit;
+  color: #1a1a1a;
 }
 
 .dashboard-card:hover {
-  background: var(--surface-hover);
-  border-color: var(--text-muted);
+  background: #f1f5f9;
+  border-color: #94a3b8;
 }
 
 .dashboard-value {
@@ -31,5 +51,5 @@
 
 .dashboard-label {
   font-size: 0.875rem;
-  color: var(--text-muted);
+  color: #64748b;
 }
